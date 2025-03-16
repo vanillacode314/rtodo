@@ -1,0 +1,36 @@
+{
+	admin off
+	auto_https off
+	persist_config off
+	log {
+		format json
+	}
+}
+
+:8080 {
+	header /_build/assets* {
+		Cache-Control "max-age=31536000, immutable"
+	}
+	header /_server/assets* {
+		Cache-Control "max-age=31536000, immutable"
+	}
+	header {
+		Cross-Origin-Embedder-Policy "require-corp"
+		Cross-Origin-Opener-Policy "same-origin"
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+	}
+
+	handle /api/* {
+		reverse_proxy {$PRIVATE_API_URL}
+	}
+
+	handle {
+		root * /var/www
+
+		try_files {path} index.html
+
+		file_server {
+			precompressed zstd br gzip
+		}
+	}
+}
