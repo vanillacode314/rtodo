@@ -10,148 +10,204 @@
 
 import { createFileRoute } from '@tanstack/solid-router'
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as appIndexRouteImport } from './routes/(app)/index'
+import { Route as authAuthRouteImport } from './routes/(auth)/auth'
+import { Route as appSettingsRouteImport } from './routes/(app)/settings'
+import { Route as appTasksCreateRouteImport } from './routes/(app)/tasks/create'
+import { Route as appHomeExplorerRouteImport } from './routes/(app)/home/_explorer'
+import { Route as authAuthSigninIndexRouteImport } from './routes/(auth)/auth/signin/index'
+import { Route as authAuthSigninMagicLinkRouteImport } from './routes/(auth)/auth/signin/magic-link'
+import { Route as appHomeExplorerSplatRouteImport } from './routes/(app)/home/_explorer/$'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as appIndexImport } from './routes/(app)/index'
-import { Route as authAuthImport } from './routes/(auth)/auth'
-import { Route as appSettingsImport } from './routes/(app)/settings'
-import { Route as appTasksCreateImport } from './routes/(app)/tasks/create'
-import { Route as appHomeExplorerImport } from './routes/(app)/home/_explorer'
-import { Route as authAuthSigninIndexImport } from './routes/(auth)/auth/signin/index'
-import { Route as authAuthSigninMagicLinkImport } from './routes/(auth)/auth/signin/magic-link'
-import { Route as appHomeExplorerSplatImport } from './routes/(app)/home/_explorer/$'
+const appHomeRouteImport = createFileRoute('/(app)/home')()
 
-// Create Virtual Routes
-
-const appHomeImport = createFileRoute('/(app)/home')()
-
-// Create/Update Routes
-
-const appHomeRoute = appHomeImport.update({
+const appHomeRoute = appHomeRouteImport.update({
   id: '/(app)/home',
   path: '/home',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const appIndexRoute = appIndexImport.update({
+const appIndexRoute = appIndexRouteImport.update({
   id: '/(app)/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const authAuthRoute = authAuthImport.update({
+const authAuthRoute = authAuthRouteImport.update({
   id: '/(auth)/auth',
   path: '/auth',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const appSettingsRoute = appSettingsImport.update({
+const appSettingsRoute = appSettingsRouteImport.update({
   id: '/(app)/settings',
   path: '/settings',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const appTasksCreateRoute = appTasksCreateImport.update({
+const appTasksCreateRoute = appTasksCreateRouteImport.update({
   id: '/(app)/tasks/create',
   path: '/tasks/create',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const appHomeExplorerRoute = appHomeExplorerImport.update({
+const appHomeExplorerRoute = appHomeExplorerRouteImport.update({
   id: '/_explorer',
   getParentRoute: () => appHomeRoute,
 } as any)
-
-const authAuthSigninIndexRoute = authAuthSigninIndexImport.update({
+const authAuthSigninIndexRoute = authAuthSigninIndexRouteImport.update({
   id: '/signin/',
   path: '/signin/',
   getParentRoute: () => authAuthRoute,
 } as any)
-
-const authAuthSigninMagicLinkRoute = authAuthSigninMagicLinkImport.update({
+const authAuthSigninMagicLinkRoute = authAuthSigninMagicLinkRouteImport.update({
   id: '/signin/magic-link',
   path: '/signin/magic-link',
   getParentRoute: () => authAuthRoute,
 } as any)
-
-const appHomeExplorerSplatRoute = appHomeExplorerSplatImport.update({
+const appHomeExplorerSplatRoute = appHomeExplorerSplatRouteImport.update({
   id: '/$',
   path: '/$',
   getParentRoute: () => appHomeExplorerRoute,
 } as any)
 
-// Populate the FileRoutesByPath interface
+export interface FileRoutesByFullPath {
+  '/settings': typeof appSettingsRoute
+  '/auth': typeof authAuthRouteWithChildren
+  '/': typeof appIndexRoute
+  '/home': typeof appHomeExplorerRouteWithChildren
+  '/tasks/create': typeof appTasksCreateRoute
+  '/home/$': typeof appHomeExplorerSplatRoute
+  '/auth/signin/magic-link': typeof authAuthSigninMagicLinkRoute
+  '/auth/signin': typeof authAuthSigninIndexRoute
+}
+export interface FileRoutesByTo {
+  '/settings': typeof appSettingsRoute
+  '/auth': typeof authAuthRouteWithChildren
+  '/': typeof appIndexRoute
+  '/home': typeof appHomeExplorerRouteWithChildren
+  '/tasks/create': typeof appTasksCreateRoute
+  '/home/$': typeof appHomeExplorerSplatRoute
+  '/auth/signin/magic-link': typeof authAuthSigninMagicLinkRoute
+  '/auth/signin': typeof authAuthSigninIndexRoute
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport
+  '/(app)/settings': typeof appSettingsRoute
+  '/(auth)/auth': typeof authAuthRouteWithChildren
+  '/(app)/': typeof appIndexRoute
+  '/(app)/home': typeof appHomeRouteWithChildren
+  '/(app)/home/_explorer': typeof appHomeExplorerRouteWithChildren
+  '/(app)/tasks/create': typeof appTasksCreateRoute
+  '/(app)/home/_explorer/$': typeof appHomeExplorerSplatRoute
+  '/(auth)/auth/signin/magic-link': typeof authAuthSigninMagicLinkRoute
+  '/(auth)/auth/signin/': typeof authAuthSigninIndexRoute
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/settings'
+    | '/auth'
+    | '/'
+    | '/home'
+    | '/tasks/create'
+    | '/home/$'
+    | '/auth/signin/magic-link'
+    | '/auth/signin'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/settings'
+    | '/auth'
+    | '/'
+    | '/home'
+    | '/tasks/create'
+    | '/home/$'
+    | '/auth/signin/magic-link'
+    | '/auth/signin'
+  id:
+    | '__root__'
+    | '/(app)/settings'
+    | '/(auth)/auth'
+    | '/(app)/'
+    | '/(app)/home'
+    | '/(app)/home/_explorer'
+    | '/(app)/tasks/create'
+    | '/(app)/home/_explorer/$'
+    | '/(auth)/auth/signin/magic-link'
+    | '/(auth)/auth/signin/'
+  fileRoutesById: FileRoutesById
+}
+export interface RootRouteChildren {
+  appSettingsRoute: typeof appSettingsRoute
+  authAuthRoute: typeof authAuthRouteWithChildren
+  appIndexRoute: typeof appIndexRoute
+  appHomeRoute: typeof appHomeRouteWithChildren
+  appTasksCreateRoute: typeof appTasksCreateRoute
+}
 
 declare module '@tanstack/solid-router' {
   interface FileRoutesByPath {
-    '/(app)/settings': {
-      id: '/(app)/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof appSettingsImport
-      parentRoute: typeof rootRoute
-    }
-    '/(auth)/auth': {
-      id: '/(auth)/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof authAuthImport
-      parentRoute: typeof rootRoute
+    '/(app)/home': {
+      id: '/(app)/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof appHomeRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/(app)/': {
       id: '/(app)/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof appIndexImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof appIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/(app)/home': {
-      id: '/(app)/home'
-      path: '/home'
-      fullPath: '/home'
-      preLoaderRoute: typeof appHomeImport
-      parentRoute: typeof rootRoute
+    '/(auth)/auth': {
+      id: '/(auth)/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof authAuthRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/(app)/home/_explorer': {
-      id: '/(app)/home/_explorer'
-      path: '/home'
-      fullPath: '/home'
-      preLoaderRoute: typeof appHomeExplorerImport
-      parentRoute: typeof appHomeRoute
+    '/(app)/settings': {
+      id: '/(app)/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof appSettingsRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/(app)/tasks/create': {
       id: '/(app)/tasks/create'
       path: '/tasks/create'
       fullPath: '/tasks/create'
-      preLoaderRoute: typeof appTasksCreateImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof appTasksCreateRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/(app)/home/_explorer/$': {
-      id: '/(app)/home/_explorer/$'
-      path: '/$'
-      fullPath: '/home/$'
-      preLoaderRoute: typeof appHomeExplorerSplatImport
-      parentRoute: typeof appHomeExplorerImport
-    }
-    '/(auth)/auth/signin/magic-link': {
-      id: '/(auth)/auth/signin/magic-link'
-      path: '/signin/magic-link'
-      fullPath: '/auth/signin/magic-link'
-      preLoaderRoute: typeof authAuthSigninMagicLinkImport
-      parentRoute: typeof authAuthImport
+    '/(app)/home/_explorer': {
+      id: '/(app)/home/_explorer'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof appHomeExplorerRouteImport
+      parentRoute: typeof appHomeRoute
     }
     '/(auth)/auth/signin/': {
       id: '/(auth)/auth/signin/'
       path: '/signin'
       fullPath: '/auth/signin'
-      preLoaderRoute: typeof authAuthSigninIndexImport
-      parentRoute: typeof authAuthImport
+      preLoaderRoute: typeof authAuthSigninIndexRouteImport
+      parentRoute: typeof authAuthRoute
+    }
+    '/(auth)/auth/signin/magic-link': {
+      id: '/(auth)/auth/signin/magic-link'
+      path: '/signin/magic-link'
+      fullPath: '/auth/signin/magic-link'
+      preLoaderRoute: typeof authAuthSigninMagicLinkRouteImport
+      parentRoute: typeof authAuthRoute
+    }
+    '/(app)/home/_explorer/$': {
+      id: '/(app)/home/_explorer/$'
+      path: '/$'
+      fullPath: '/home/$'
+      preLoaderRoute: typeof appHomeExplorerSplatRouteImport
+      parentRoute: typeof appHomeExplorerRoute
     }
   }
 }
-
-// Create and export the route tree
 
 interface authAuthRouteChildren {
   authAuthSigninMagicLinkRoute: typeof authAuthSigninMagicLinkRoute
@@ -190,84 +246,6 @@ const appHomeRouteChildren: appHomeRouteChildren = {
 const appHomeRouteWithChildren =
   appHomeRoute._addFileChildren(appHomeRouteChildren)
 
-export interface FileRoutesByFullPath {
-  '/settings': typeof appSettingsRoute
-  '/auth': typeof authAuthRouteWithChildren
-  '/': typeof appIndexRoute
-  '/home': typeof appHomeExplorerRouteWithChildren
-  '/tasks/create': typeof appTasksCreateRoute
-  '/home/$': typeof appHomeExplorerSplatRoute
-  '/auth/signin/magic-link': typeof authAuthSigninMagicLinkRoute
-  '/auth/signin': typeof authAuthSigninIndexRoute
-}
-
-export interface FileRoutesByTo {
-  '/settings': typeof appSettingsRoute
-  '/auth': typeof authAuthRouteWithChildren
-  '/': typeof appIndexRoute
-  '/home': typeof appHomeExplorerRouteWithChildren
-  '/tasks/create': typeof appTasksCreateRoute
-  '/home/$': typeof appHomeExplorerSplatRoute
-  '/auth/signin/magic-link': typeof authAuthSigninMagicLinkRoute
-  '/auth/signin': typeof authAuthSigninIndexRoute
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/(app)/settings': typeof appSettingsRoute
-  '/(auth)/auth': typeof authAuthRouteWithChildren
-  '/(app)/': typeof appIndexRoute
-  '/(app)/home': typeof appHomeRouteWithChildren
-  '/(app)/home/_explorer': typeof appHomeExplorerRouteWithChildren
-  '/(app)/tasks/create': typeof appTasksCreateRoute
-  '/(app)/home/_explorer/$': typeof appHomeExplorerSplatRoute
-  '/(auth)/auth/signin/magic-link': typeof authAuthSigninMagicLinkRoute
-  '/(auth)/auth/signin/': typeof authAuthSigninIndexRoute
-}
-
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/settings'
-    | '/auth'
-    | '/'
-    | '/home'
-    | '/tasks/create'
-    | '/home/$'
-    | '/auth/signin/magic-link'
-    | '/auth/signin'
-  fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/settings'
-    | '/auth'
-    | '/'
-    | '/home'
-    | '/tasks/create'
-    | '/home/$'
-    | '/auth/signin/magic-link'
-    | '/auth/signin'
-  id:
-    | '__root__'
-    | '/(app)/settings'
-    | '/(auth)/auth'
-    | '/(app)/'
-    | '/(app)/home'
-    | '/(app)/home/_explorer'
-    | '/(app)/tasks/create'
-    | '/(app)/home/_explorer/$'
-    | '/(auth)/auth/signin/magic-link'
-    | '/(auth)/auth/signin/'
-  fileRoutesById: FileRoutesById
-}
-
-export interface RootRouteChildren {
-  appSettingsRoute: typeof appSettingsRoute
-  authAuthRoute: typeof authAuthRouteWithChildren
-  appIndexRoute: typeof appIndexRoute
-  appHomeRoute: typeof appHomeRouteWithChildren
-  appTasksCreateRoute: typeof appTasksCreateRoute
-}
-
 const rootRouteChildren: RootRouteChildren = {
   appSettingsRoute: appSettingsRoute,
   authAuthRoute: authAuthRouteWithChildren,
@@ -275,65 +253,6 @@ const rootRouteChildren: RootRouteChildren = {
   appHomeRoute: appHomeRouteWithChildren,
   appTasksCreateRoute: appTasksCreateRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/(app)/settings",
-        "/(auth)/auth",
-        "/(app)/",
-        "/(app)/home",
-        "/(app)/tasks/create"
-      ]
-    },
-    "/(app)/settings": {
-      "filePath": "(app)/settings.tsx"
-    },
-    "/(auth)/auth": {
-      "filePath": "(auth)/auth.tsx",
-      "children": [
-        "/(auth)/auth/signin/magic-link",
-        "/(auth)/auth/signin/"
-      ]
-    },
-    "/(app)/": {
-      "filePath": "(app)/index.tsx"
-    },
-    "/(app)/home": {
-      "filePath": "(app)/home",
-      "children": [
-        "/(app)/home/_explorer"
-      ]
-    },
-    "/(app)/home/_explorer": {
-      "filePath": "(app)/home/_explorer.tsx",
-      "parent": "/(app)/home",
-      "children": [
-        "/(app)/home/_explorer/$"
-      ]
-    },
-    "/(app)/tasks/create": {
-      "filePath": "(app)/tasks/create.tsx"
-    },
-    "/(app)/home/_explorer/$": {
-      "filePath": "(app)/home/_explorer/$.tsx",
-      "parent": "/(app)/home/_explorer"
-    },
-    "/(auth)/auth/signin/magic-link": {
-      "filePath": "(auth)/auth/signin/magic-link.tsx",
-      "parent": "/(auth)/auth"
-    },
-    "/(auth)/auth/signin/": {
-      "filePath": "(auth)/auth/signin/index.tsx",
-      "parent": "/(auth)/auth"
-    }
-  }
-}
-ROUTE_MANIFEST_END */
