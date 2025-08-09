@@ -11,7 +11,6 @@ import {
 import { Portal } from 'solid-js/web';
 
 import { syncToURLHash } from '~/utils/signals';
-import { cn } from '~/utils/tailwind';
 
 export type TModalSource =
 	| HTMLElement
@@ -110,7 +109,8 @@ export function Modal(props: Props) {
 	return (
 		<Portal>
 			<dialog
-				class="relative isolate m-0 h-full max-h-full w-full max-w-full bg-transparent"
+				closedby={mergedProps.closeOnOutsideClick ? 'any' : 'closerequest'}
+				class="m-auto"
 				id={mergedProps.id}
 				onClose={() => mergedProps.setOpen(false)}
 				ref={(el) => {
@@ -118,20 +118,9 @@ export function Modal(props: Props) {
 					typeof props.ref === 'function' ? props.ref(el) : (props.ref = el);
 				}}
 			>
-				<div
-					class={cn(
-						'sm:content-grid grid h-full w-full items-end sm:items-center sm:justify-items-center'
-					)}
-					onClick={(event) => {
-						if (mergedProps.closeOnOutsideClick && event.target === event.currentTarget) {
-							mergedProps.setOpen(false);
-						}
-					}}
-				>
-					{typeof props.children === 'function' ?
-						props.children(() => mergedProps.setOpen(false))
-					:	props.children}
-				</div>
+				{typeof props.children === 'function' ?
+					props.children(() => mergedProps.setOpen(false))
+				:	props.children}
 			</dialog>
 		</Portal>
 	);
