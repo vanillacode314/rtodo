@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1024mm"
+   height="1024mm"
+   viewBox="0 0 1024 1024"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(0.45224661,-2.1019278)">
+    <rect
+       style="display:inline;fill:#000000;stroke-width:0.264583"
+       id="rect1"
+       width="1024"
+       height="1024"
+       x="-0.45224661"
+       y="2.1019278" />
+    <path
+       d="m 314.55943,385.36792 v -142.3453 h 48.91867 q 22.15374,0 34.18292,11.22724 12.12942,11.22723 12.12942,31.87733 0,15.3372 -6.21507,25.86273 -6.21508,10.42529 -17.94353,15.33721 l 29.37125,58.04079 h -24.05836 l -25.7625,-54.13131 q -0.90219,0 -1.70413,0 h -28.06809 v 54.13131 z m 20.85058,-73.17751 h 28.06809 q 11.92894,0 18.54498,-6.31532 6.7163,-6.31532 6.7163,-17.74304 0,-12.5304 -6.7163,-19.24669 -6.61604,-6.81653 -18.54498,-6.81653 H 335.41001 Z M 470.5378,385.36792 V 262.06883 h -41.70115 v -19.04621 h 104.25289 v 19.04621 h -41.70116 v 123.29909 z"
+       id="text1"
+       style="font-size:205.298px;font-family:'CaskaydiaCove Nerd Font';-inkscape-font-specification:'CaskaydiaCove Nerd Font';white-space:pre;inline-size:408.134;fill:#ffffff;stroke-width:0.264583"
+       transform="matrix(3.5192233,0,0,3.5192233,-979.98525,-591.62139)"
+       aria-label="RT" />
+  </g>
+</svg>

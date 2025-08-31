@@ -1,0 +1,4 @@
+apps/app/src/**/*.ts
+apps/web/src/**/*.ts
+apps/web/src/**/*.tsx
+packages/hlc/src/**/*.ts

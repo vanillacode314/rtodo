@@ -1,0 +1,269 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CodeCompanion.nvim workspace configuration file",
+  "description": "Schema for a CodeCompanion.nvim workspace configuration file. A workspace is a collection of groups which relate to functionality in a codebase",
+  "name": "Monorepo Workspace",
+  "version": "0.1.0",
+  "system_prompt": "You are a helpful AI assistant. Use the provided codebase context to answer the user's questions.",
+  "groups": [
+    {
+      "name": "Authentication",
+      "system_prompt": "You are an expert in authentication. Use the following files to understand the authentication flow and implementation details.",
+      "data": [
+        "auth_utils_server",
+        "auth_utils_client",
+        "auth_middleware",
+        "auth_schema",
+        "signin_page",
+        "magic_link_page",
+        "sidebar",
+        "auth_env"
+      ]
+    },
+    {
+      "name": "Frontend",
+      "system_prompt": "You are an expert in the frontend codebase. Use the following files to understand the structure, components, and data flow of the SolidJS application.",
+      "data": [
+        "app_component",
+        "fab_component",
+        "frontend_consts",
+        "math_utils",
+        "db_client_frontend",
+        "frontend_env",
+        "db_utils_frontend",
+        "tailwind_utils",
+        "frontend_queries"
+      ]
+    },
+    {
+      "name": "Backend",
+      "system_prompt": "You are an expert in the backend codebase. Use the following files to understand the server-side logic and database interactions.",
+      "data": [
+        "db_client_backend"
+      ]
+    },
+    {
+      "name": "WebSockets",
+      "system_prompt": "You are an expert in websocket communication. Use the following files to understand how the client communicates with the server via websockets.",
+      "data": [
+        "websocket_messages",
+        "websocket_signals",
+        "websocket_utils"
+      ]
+    },
+    {
+      "name": "Data Synchronization",
+      "system_prompt": "You are an expert in data synchronization. Use the following files to understand how data is synchronized between the client and server, and how conflicts are resolved using HLC.",
+      "data": [
+        "backend_messages_db",
+        "client_clock_utils",
+        "server_clock_utils",
+        "client_message_utils",
+        "client_db_schema",
+        "websocket_sync",
+        "client_db"
+      ]
+    },
+    {
+      "name": "HLC (Hybrid Logical Clock)",
+      "system_prompt": "You are an expert in Hybrid Logical Clocks. Use the following files to understand how HLC is implemented and used for data synchronization.",
+      "data": [
+        "backend_clock_utils",
+        "client_clock_utils",
+        "message_utils",
+        "client_db"
+      ]
+    },
+    {
+      "name": "Database",
+      "system_prompt": "You are an expert in database interactions. Use the following files to understand how the application interacts with the SQLite databases, both client-side and backend.",
+      "data": [
+        "client_db_utils",
+        "server_db_utils",
+        "client_db_schema",
+        "server_db_schema",
+        "client_db_client",
+        "server_db_client",
+        "client_db_queries",
+        "server_db_messages"
+      ]
+    }
+  ],
+  "data": {
+    "auth_utils_server": {
+      "type": "file",
+      "path": "apps/app/src/utils/auth.ts",
+      "description": "Main authentication configuration for the backend"
+    },
+    "auth_utils_client": {
+      "type": "file",
+      "path": "apps/web/src/utils/auth-client.ts",
+      "description": "Client-side authentication setup"
+    },
+    "auth_middleware": {
+      "type": "file",
+      "path": "apps/app/src/middlewares/auth-middlewares.ts",
+      "description": "Middleware functions for authentication"
+    },
+    "auth_schema": {
+      "type": "file",
+      "path": "apps/app/src/db/auth-schema.ts",
+      "description": "Database schema for authentication-related data"
+    },
+    "signin_page": {
+      "type": "file",
+      "path": "apps/web/src/routes/auth/signin/index.tsx",
+      "description": "Sign-in page component"
+    },
+    "magic_link_page": {
+      "type": "file",
+      "path": "apps/web/src/routes/auth/signin/magic-link.tsx",
+      "description": "Magic link sign-in page component"
+    },
+    "sidebar": {
+      "type": "file",
+      "path": "apps/web/src/components/TheSidebar.tsx",
+      "description": "Sidebar component with sign-in/sign-out functionality"
+    },
+    "auth_env": {
+      "type": "file",
+      "path": "apps/app/src/utils/env.ts",
+      "description": "Environment variables used by authentication"
+    },
+    "fab_component": {
+      "type": "file",
+      "path": "apps/web/src/components/Fab.tsx",
+      "description": "Floating Action Button component"
+    },
+    "frontend_consts": {
+      "type": "file",
+      "path": "apps/web/src/consts/index.ts",
+      "description": "Frontend constants"
+    },
+    "math_utils": {
+      "type": "file",
+      "path": "apps/web/src/utils/math.ts",
+      "description": "Math utility functions"
+    },
+    "db_client_frontend": {
+      "type": "file",
+      "path": "apps/web/src/db/client.ts",
+      "description": "Client-side database setup"
+    },
+    "frontend_env": {
+      "type": "file",
+      "path": "apps/web/src/utils/env.ts",
+      "description": "Frontend environment variables"
+    },
+    "app_component": {
+      "type": "file",
+      "path": "apps/web/src/app.tsx",
+      "description": "Main application component"
+    },
+    "db_utils_frontend": {
+      "type": "file",
+      "path": "apps/web/src/utils/db.ts",
+      "description": "Database utility functions"
+    },
+    "tailwind_utils": {
+      "type": "file",
+      "path": "apps/web/src/utils/tailwind.ts",
+      "description": "Tailwind CSS utility function"
+    },
+    "frontend_queries": {
+      "type": "file",
+      "path": "apps/web/src/queries/index.ts",
+      "description": "Data queries for the frontend"
+    },
+    "db_client_backend": {
+      "type": "file",
+      "path": "apps/app/src/db/client.ts",
+      "description": "Backend database setup"
+    },
+    "websocket_messages": {
+      "type": "file",
+      "path": "apps/web/src/sockets/messages.ts",
+      "description": "Core websocket communication logic"
+    },
+    "websocket_signals": {
+      "type": "file",
+      "path": "apps/web/src/utils/signals.ts",
+      "description": "Signals for websocket connection state"
+    },
+    "websocket_utils": {
+      "type": "file",
+      "path": "apps/web/src/utils/messages.ts",
+      "description": "Utilities for creating and receiving messages"
+    },
+    "backend_messages_db": {
+      "type": "file",
+      "path": "apps/app/src/db/messages.ts",
+      "description": "Functions for receiving messages in the backend"
+    },
+    "client_clock_utils": {
+      "type": "file",
+      "path": "apps/web/src/utils/clock.ts",
+      "description": "Utilities for managing the local clock in the client"
+    },
+    "server_clock_utils": {
+      "type": "file",
+      "path": "apps/app/src/utils/clock.ts",
+      "description": "Utilities for managing the local clock in the server"
+    },
+    "client_message_utils": {
+      "type": "file",
+      "path": "apps/web/src/utils/messages.ts",
+      "description": "Utilities for creating and applying messages in the client"
+    },
+    "client_db_schema": {
+      "type": "file",
+      "path": "apps/web/src/db/schema.ts",
+      "description": "Database schema for messages in the client"
+    },
+    "websocket_sync": {
+      "type": "file",
+      "path": "apps/web/src/sockets/messages.ts",
+      "description": "Websocket logic for data synchronization"
+    },
+    "backend_clock_utils": {
+      "type": "file",
+      "path": "apps/app/src/utils/clock.ts",
+      "description": "Utilities for managing the HLC clock in the backend"
+    },
+    "message_utils": {
+      "type": "file",
+      "path": "apps/web/src/utils/messages.ts",
+      "description": "Utilities for creating and applying messages using HLC"
+    },
+    "client_db_utils": {
+      "type": "file",
+      "path": "apps/web/src/utils/db.ts",
+      "description": "Utilities for interacting with the client-side database"
+    },
+    "server_db_utils": {
+      "type": "file",
+      "path": "apps/app/src/utils/db.ts",
+      "description": "Utilities for interacting with the backend database"
+    },
+    "server_db_schema": {
+      "type": "file",
+      "path": "apps/app/src/db/schema.ts",
+      "description": "Database schema for the backend database"
+    },
+    "server_db_client": {
+      "type": "file",
+      "path": "apps/app/src/db/client.ts",
+      "description": "Database connection configuration for the backend database"
+    },
+    "client_db_queries": {
+      "type": "file",
+      "path": "apps/web/src/queries/index.ts",
+      "description": "Queries for fetching data from the client-side database"
+    },
+    "server_db_messages": {
+      "type": "file",
+      "path": "apps/app/src/db/messages.ts",
+      "description": "Functions for receiving messages in the backend"
+    }
+  }
+}

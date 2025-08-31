@@ -1,0 +1,14 @@
+{
+  "framework": "solid",
+  "projectName": "web",
+  "typescript": true,
+  "tailwind": true,
+  "packageManager": "bun",
+  "toolchain": "none",
+  "mode": "file-router",
+  "git": true,
+  "variableValues": {},
+  "version": 1,
+  "existingAddOns": []
+}
+
